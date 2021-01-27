@@ -25,10 +25,11 @@ data_t hampel_hw(data_t x, int threshold) {
 	static data_t buf[WINDOW_SIZE];
 	data_t sorted[WINDOW_SIZE];
 	data_t med;
-	float std;
+	int std;
 
 	BufShift:
 	for (i = 1; i < WINDOW_SIZE; i++) {
+#pragma HLS unroll factor = 7
 		buf[i-1] = buf[i];
 	}
 	buf[WINDOW_SIZE-1] = x;
@@ -37,6 +38,7 @@ data_t hampel_hw(data_t x, int threshold) {
 	med = median(sorted, WINDOW_SIZE);
 	LoopAbs:
 	for (i = 0; i < WINDOW_SIZE; i++) {
+#pragma HLS unroll factor = 7
 		sorted[i] = abs(sorted[i] - med);
 	}
 	std = (data_t)148 * median(sorted, WINDOW_SIZE);

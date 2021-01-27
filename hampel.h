@@ -6,7 +6,7 @@
 #define FS 100
 #define WINDOW_SIZE 7
 
-typedef ap_int<17> data_t;
+typedef int data_t;
 
 data_t hampel_hw(data_t x, int threshold);
 

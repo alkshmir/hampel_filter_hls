@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <math.h>
-#include "hampel.h"
+#include "hampel_bandw.h"
 
 static data_t median(data_t *data, int n) {
 	// sorting
